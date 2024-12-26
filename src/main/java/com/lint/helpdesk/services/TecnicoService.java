@@ -58,6 +58,16 @@ public class TecnicoService {
 		validaPorCpfEEmail(objDTO);
 		oldObj = new Tecnico(objDTO);
 		return repository.save(oldObj);		
+	}
+
+	public void delete(Integer id) {
+		Tecnico obj = findById(id);	
+		if (obj.getChamado().size() > 0) {
+			throw new DataIntegrityViolationException("O técnico possui ordens de serviço e não pode ser deletado!");
+		} else {
+			repository.deleteById(id);
+		}
+		
 	} 
 	
 	
