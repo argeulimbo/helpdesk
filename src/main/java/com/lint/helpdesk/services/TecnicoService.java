@@ -1,5 +1,6 @@
 package com.lint.helpdesk.services;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -41,6 +42,7 @@ public class TecnicoService {
 	public Tecnico create(TecnicoDTO objDTO) {
 		objDTO.setId(null);
 		objDTO.setSenha(encoder.encode(objDTO.getSenha()));
+		objDTO.setDataCriacao(LocalDate.now());
 		validaPorCpfEEmail(objDTO);
 		Tecnico newObj = new Tecnico(objDTO);
 		return repository.save(newObj);	
