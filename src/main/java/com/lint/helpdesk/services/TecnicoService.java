@@ -68,6 +68,8 @@ public class TecnicoService {
 			objDTO.setSenha(encoder.encode(objDTO.getSenha()));
 		}
 		
+		// add last change
+		objDTO.setDataCriacao(LocalDate.now());		
 		validaPorCpfEEmail(objDTO);
 		oldObj = new Tecnico(objDTO);
 		return repository.save(oldObj);		

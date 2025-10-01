@@ -66,8 +66,10 @@ public class ClienteService {
 		// verify if password was been change
 		if(!objDTO.getSenha().equals(oldObj.getSenha())) {
 			objDTO.setSenha(encoder.encode(objDTO.getSenha()));
-		}
+		}	
 		
+		// add last change
+		objDTO.setDataCriacao(LocalDate.now());
 		validaPorCpfEEmail(objDTO);
 		oldObj = new Cliente(objDTO);
 		return repository.save(oldObj);		
