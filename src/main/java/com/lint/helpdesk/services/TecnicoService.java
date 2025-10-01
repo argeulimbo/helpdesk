@@ -61,6 +61,7 @@ public class TecnicoService {
 		objDTO.setId(id);
 		Tecnico oldObj = findById(id);
 		
+		// verify if password was been change
 		if(!objDTO.getSenha().equals(oldObj.getSenha())) {
 			objDTO.setSenha(encoder.encode(objDTO.getSenha()));
 		}
